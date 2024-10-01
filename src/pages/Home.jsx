@@ -115,7 +115,7 @@ function Home() {
           </div>
         </div>
 
-      <div className="flex flex-col-reverse sm:flex-row items-center scroll-text ">
+      <div className="flex flex-col sm:flex-row items-center scroll-text ">
       <img
           src={pic1}
           alt="pic"
@@ -143,7 +143,7 @@ function Home() {
         />
       </div>
 
-      <div className="flex flex-col-reverse sm:flex-row items-center scroll-text">
+      <div className="flex flex-col sm:flex-row items-center scroll-text">
       <img
           src={pic3}
           alt="pic"
@@ -174,7 +174,7 @@ function Home() {
       <img
         src={circle}
         alt="circle"
-        className=' circle1 fixed sm:bottom-56 bottom-48 right-4 w-32 -z-20'
+        className=' circle1 fixed sm:bottom-56 bottom-40 right-4 w-32 -z-20'
       />
       <img
         src={vector1}

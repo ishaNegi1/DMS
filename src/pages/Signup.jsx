@@ -24,8 +24,8 @@ const Signup = () => {
 
   return (
     <>
-      <div className=" sm:block hidden">
       <Vector0 />
+      <div className=" sm:block hidden">
       <div className=" absolute top-32 left-28">
         <div className=" font-AbhayaLibre text-3xl sm:text-6xl font-semibold">
           <p>All your files in one </p>
@@ -45,7 +45,7 @@ const Signup = () => {
         </p>
       </div>
       </div>
-      <div className=" w-full sm:w-1/2 h-screen fixed right-0 top-0 sm:rounded-s-3xl rounded-none sm:border-l-2 border-l-0 border-main bg-white">
+      <div className=" w-full sm:w-1/2 h-screen fixed right-0 top-0 sm:rounded-s-3xl rounded-none sm:border-l-2 border-l-0 border-main sm:bg-white">
         <p className=" font-Telex text-3xl sm:text-5xl font-medium mt-20 ml-10">
           Create Account
         </p>
@@ -98,7 +98,7 @@ const Signup = () => {
             <p className=" text-lg">Sign up with Google</p>
           </button>
         </div>
-        <p className="sm:hidden block font-Nunito text-xl mt-11 text-center">
+        <p className="sm:hidden block font-Nunito text-xl my-6 text-center">
           Already have an account?{" "}
           <b className=" text-2xl">
             <u>
@@ -110,12 +110,12 @@ const Signup = () => {
       <img
         src={circle}
         alt="circle"
-        className=" circle1 fixed sm:bottom-56 bottom-48 right-1/2 w-32 -z-20 sm:block hidden"
+        className=" circle1 fixed sm:bottom-56 bottom-40 sm:right-1/2 right-4 w-32 -z-20"
       />
       <img
         src={vector1}
         alt="vector"
-        className=" vector1 h-40 sm:h-52 w-52 sm:w-72 fixed bottom-0 right-1/2 -z-20 sm:block hidden"
+        className=" vector1 h-40 sm:h-52 w-52 sm:w-72 fixed bottom-0 sm:right-1/2 right-0 -z-20"
       />
     </>
   );

@@ -31,7 +31,7 @@ const Vector0 = () => {
       <img
         src={circle}
         alt="circle"
-        className=' circle0 fixed sm:top-64 left-4 top-48 w-32 -z-20'
+        className=' circle0 fixed sm:top-64 left-4 top-40 w-32 -z-20'
       />
     </>
   )
