@@ -115,7 +115,7 @@ function Home() {
           </div>
         </div>
 
-      <div className="flex flex-col sm:flex-row items-center sm:mt-7 mt-2 scroll-text ">
+      <div className="flex flex-col-reverse sm:flex-row items-center scroll-text ">
       <img
           src={pic1}
           alt="pic"
@@ -143,7 +143,7 @@ function Home() {
         />
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center sm:-mt-11 mt-14 scroll-text">
+      <div className="flex flex-col-reverse sm:flex-row items-center scroll-text">
       <img
           src={pic3}
           alt="pic"
@@ -157,7 +157,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col-reverse sm:flex-row items-center sm:-mt-24 scroll-text">
+      <div className="flex flex-col-reverse sm:flex-row items-center scroll-text">
       <div className="text-black sm:ml-72">
           <p className="font-Kalnia text-2xl sm:text-4xl hd">Delete Files</p>
           <div className="font-Judson text-justify text-xs sm:text-2xl sm:w-10/12 w-60 mt-4 txt mb-6">
