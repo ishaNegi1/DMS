@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const Signup = () => {
   useEffect(() => {
+    document.title = 'DMS-Signup'
     gsap.to(".vector1", {
       scale: 1.2,
       duration: 2,
