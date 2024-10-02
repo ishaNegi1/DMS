@@ -14,8 +14,6 @@ function Home() {
   useEffect(() => {
     setLoader(false);
     document.title = 'DMS-Home'
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 640px)", () => {
       const headings = document.querySelectorAll(".scroll-text .hd");
       const paragraphs = document.querySelectorAll(".scroll-text .txt");
       headings.forEach((heading) => {
@@ -71,50 +69,6 @@ function Home() {
         repeat: -1,
         yoyo: true,
       });
-    });
-
-    mm.add("(max-width: 640px)", () => {
-      const headings = document.querySelectorAll(".scroll-text .hd");
-      const paragraphs = document.querySelectorAll(".scroll-text .txt");
-      headings.forEach((heading) => {
-        const text = heading.innerText.split("");
-        heading.innerHTML = "";
-        text.forEach((char) => {
-          const span = document.createElement("span");
-          span.innerText = char === " " ? "\u00A0" : char;
-          heading.appendChild(span);
-        });
-        gsap.from(heading.children, {
-          scrollTrigger: {
-            trigger: heading,
-            start: "top 70%",
-            end: "top 30%",
-            toggleActions: "play none none reverse",
-            once: false,
-          },
-          opacity: 0,
-          y: 20,
-          duration: 1,
-          ease: "power1.out",
-          stagger: 0.05,
-        });
-      });
-      paragraphs.forEach((paragraph) => {
-        gsap.from(paragraph, {
-          scrollTrigger: {
-            trigger: paragraph,
-            start: "top 70%",
-            end: "top 30%",
-            toggleActions: "play none none reverse",
-            once: false,
-          },
-          opacity: 0,
-          y: 10,
-          duration: 0.8,
-          ease: "power1.out",
-        });
-      });
-    });
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
