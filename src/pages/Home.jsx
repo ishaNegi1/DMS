@@ -4,15 +4,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Loader from "../components/Loader";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
-  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    setLoader(false);
     document.title = 'DMS-Home'
       const headings = document.querySelectorAll(".scroll-text .hd");
       const paragraphs = document.querySelectorAll(".scroll-text .txt");
@@ -74,10 +71,6 @@ function Home() {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
-
-  if(loader){
-    return <Loader />
-  }
 
   return (
     <>
