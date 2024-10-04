@@ -78,6 +78,7 @@ const Login = () => {
             type="email"
             id="email"
             name="email"
+            required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
 
@@ -88,6 +89,7 @@ const Login = () => {
             type="password"
             id="password"
             name="password"
+            required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
           <p className=" text-red text-lg">{error}</p>
