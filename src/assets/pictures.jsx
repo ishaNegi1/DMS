@@ -7,5 +7,9 @@ import pic3 from './pic3.png';
 import pic4 from './pic4.png';
 import circle from './circle.png';
 import google from './google.png';
+import profile from './profile.png'
+import upload from './upload.png'
+import file from './file.png'
+import folder from './folder.png'
 
-export {logo, vector0, vector1, pic1, pic2, pic3, pic4, circle, google}
+export {logo, vector0, vector1, pic1, pic2, pic3, pic4, circle, google, profile, upload, file, folder}

@@ -17,6 +17,7 @@ export default {
       'white': '#FFFBFB',
       'input-line': '#C4C4C4',
       'gray':'#555353',
+      'red': '#FF2511'
     },
     backgroundImage: {
       'gradient-nav-foot': 'linear-gradient(to bottom,#CBBBDD, #DCD1E9, white)',

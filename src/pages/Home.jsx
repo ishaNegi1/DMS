@@ -1,8 +1,8 @@
 import {logo, vector1, pic1, pic2, pic3, pic4, circle,} from "../assets/pictures";
-import { Button, Footer, Vector0 } from "../components/allComponents";
+import { Button, Footer, Vector0, Vector1 } from "../components/allComponents";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -50,21 +50,6 @@ function Home() {
           duration: 1,
           ease: "power1.out",
         });
-      });
-
-      gsap.to(".vector1", {
-        scale: 1.2,
-        duration: 2,
-        ease: "power1.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-      gsap.to(".circle1", {
-        y: -50,
-        duration: 2,
-        ease: "linear",
-        repeat: -1,
-        yoyo: true,
       });
 
     return () => {
@@ -181,17 +166,7 @@ function Home() {
           className=" sm:w-1/3 w-64 h-auto mt-8 sm:mt-0 sm:ml-auto sm:mr-28 mr-2 transition-all duration-700 ease-in-out transform hover:scale-110"
         />
       </div>
-
-      <img
-        src={circle}
-        alt="circle"
-        className=" circle1 fixed sm:bottom-56 bottom-40 right-4 w-32 -z-20"
-      />
-      <img
-        src={vector1}
-        alt="vector"
-        className=" vector1 h-40 sm:h-52 w-52 sm:w-72 fixed bottom-0 right-0 -z-20"
-      />
+      <Vector1 />
       <Footer />
     </>
   );

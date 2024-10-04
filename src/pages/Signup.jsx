@@ -1,12 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Vector0 from "../components/Vector0";
 import { vector1, circle, google } from "../assets/pictures";
 import gsap from "gsap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Signup = () => {
+  const[error, setError] = useState("")
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const user = await createAccount({
+      fullname: fullname.value,
+      email: email.value,
+      password: password.value,
+    });
+    if (user) {
+      const user = await getUserData();
+      if (user) dispatch(login(user));
+      navigate("/User");
+    }
+    else{
+      setError("User already exists.")
+    }
+  };
+
   useEffect(() => {
-    document.title = 'DMS-Signup'
+    document.title = "DMS-Signup";
     gsap.to(".vector1", {
       scale: 1.2,
       duration: 2,
@@ -27,30 +49,33 @@ const Signup = () => {
     <>
       <Vector0 />
       <div className=" sm:block hidden">
-      <div className=" absolute top-32 left-28">
-        <div className=" font-AbhayaLibre text-3xl sm:text-6xl font-semibold">
-          <p>All your files in one </p>
-          <p>place, always</p>
-          <p>within reach.</p>
+        <div className=" absolute top-32 left-28">
+          <div className=" font-AbhayaLibre text-3xl sm:text-6xl font-semibold">
+            <p>All your files in one </p>
+            <p>place, always</p>
+            <p>within reach.</p>
+          </div>
+          <p className=" font-Nunito text-3xl mt-8">
+            Start organizing in minutes!
+          </p>
+          <p className=" font-Nunito text-4xl mt-11">
+            Already have an account?{" "}
+            <b className=" text-4xl">
+              <u>
+                <Link to="Login">Log in</Link>
+              </u>
+            </b>
+          </p>
         </div>
-        <p className=" font-Nunito text-3xl mt-8">
-          Start organizing in minutes!
-        </p>
-        <p className=" font-Nunito text-4xl mt-11">
-          Already have an account?{" "}
-          <b className=" text-4xl">
-            <u>
-              <Link to="Login">Log in</Link>
-            </u>
-          </b>
-        </p>
-      </div>
       </div>
       <div className=" w-full sm:w-1/2 h-screen fixed right-0 top-0 sm:rounded-s-3xl rounded-none sm:border-l-2 border-l-0 border-main sm:bg-white">
         <p className=" font-Telex text-3xl sm:text-5xl font-medium sm:mt-20 mt-8 ml-10">
           Create Account
         </p>
-        <form className="flex flex-col font-Telex mt-11 ml-10">
+        <form
+          className="flex flex-col font-Telex sm:mt-11 mt-7 ml-10"
+          onSubmit={handleSubmit}
+        >
           <label htmlFor="fullname" className="mb-2 text-xl">
             Full Name
           </label>
@@ -80,7 +105,7 @@ const Signup = () => {
             name="password"
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
-
+          <p className=" text-red text-lg">{error}</p>
           <button
             type="submit"
             className="mt-4 bg-main text-white py-2 rounded-lg sm:w-96 w-64 sm:mx-auto ml-4 text-lg transition-all duration-500 ease-linear transform hover:scale-110"

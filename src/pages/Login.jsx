@@ -1,12 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Vector0 from "../components/Vector0";
-import { vector1, circle, google } from "../assets/pictures";
+import { vector1, circle } from "../assets/pictures";
 import gsap from "gsap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../store/authSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const[error, setError] = useState("")
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    session = await loginUser({ email: email.value, password: password.value });
+    if (session) {
+      const userData = await getUserData();
+      if (userData) dispatch(login(userData));
+      navigate("/User");
+    }
+    else{
+      setError("Invalid email or password.")
+    }
+  };
+
   useEffect(() => {
-    document.title = 'DMS-Login'
+    document.title = "DMS-Login";
     gsap.to(".vector1", {
       scale: 1.2,
       duration: 2,
@@ -22,35 +41,36 @@ const Login = () => {
       yoyo: true,
     });
   }, []);
-  
+
   return (
     <>
       <Vector0 />
       <div className=" sm:block hidden">
-      <div className=" absolute top-32 left-28">
-        <div className=" font-AbhayaLibre text-3xl sm:text-6xl font-semibold">
-          <p>All your files in one </p>
-          <p>place, access them</p>
-          <p>instantly.</p>
+        <div className=" absolute top-32 left-28">
+          <div className=" font-AbhayaLibre text-3xl sm:text-6xl font-semibold">
+            <p>All your files in one </p>
+            <p>place, access them</p>
+            <p>instantly.</p>
+          </div>
+          <p className=" font-Nunito text-3xl mt-8">Log in and get started!</p>
+          <p className=" font-Nunito text-4xl mt-11">
+            Don't have an account yet?{" "}
+            <b className=" text-4xl">
+              <u>
+                <Link to="Signup">Sign up</Link>
+              </u>
+            </b>
+          </p>
         </div>
-        <p className=" font-Nunito text-3xl mt-8">
-        Log in and get started!
-        </p>
-        <p className=" font-Nunito text-4xl mt-11">
-        Don't have an account yet?{" "}
-          <b className=" text-4xl">
-            <u>
-              <Link to="Signup">Sign up</Link>
-            </u>
-          </b>
-        </p>
-      </div>
       </div>
       <div className=" w-full sm:w-1/2 h-screen fixed right-0 top-0 sm:rounded-s-3xl rounded-none sm:border-l-2 border-l-0 border-main sm:bg-white">
         <p className=" font-Telex text-3xl sm:text-5xl font-medium mt-20 ml-10">
-        Welcome Back
+          Welcome Back
         </p>
-        <form className="flex flex-col font-Telex mt-11 ml-10">
+        <form
+          className="flex flex-col font-Telex mt-11 ml-10"
+          onSubmit={handleSubmit}
+        >
           <label htmlFor="email" className="mb-2 text-xl">
             Email Address
           </label>
@@ -70,7 +90,7 @@ const Login = () => {
             name="password"
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
-
+          <p className=" text-red text-lg">{error}</p>
           <button
             type="submit"
             className="mt-4 bg-main text-white py-2 rounded-lg sm:w-96 w-64 sm:mx-auto ml-4 text-lg transition-all duration-500 ease-linear transform hover:scale-110"
@@ -79,7 +99,7 @@ const Login = () => {
           </button>
         </form>
         <p className=" sm:hidden block font-Nunito text-xl my-6 text-center">
-        Don't have an account yet?{" "}
+          Don't have an account yet?{" "}
           <b className=" text-2xl">
             <u>
               <Link to="Signup">Sign up</Link>
@@ -98,7 +118,7 @@ const Login = () => {
         className=" vector1 h-40 sm:h-52 w-52 sm:w-72 fixed bottom-0 sm:right-1/2 right-0 -z-20"
       />
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

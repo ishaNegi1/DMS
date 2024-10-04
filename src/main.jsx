@@ -1,12 +1,14 @@
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import { Home, Signup, Login } from './pages/allPages.jsx'
+import { Home, Signup, Login, User } from './pages/allPages.jsx'
 import './index.css'
 import {
     createBrowserRouter,
     RouterProvider,
     Navigate
 } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './store/store.js'
 
 const router = createBrowserRouter([
     {
@@ -20,6 +22,10 @@ const router = createBrowserRouter([
     {
         path: '/Login',
         element: <Login />
+    },
+    {
+        path: '/User',
+        element: <User />
     },
     {
         path: '/Signup/Login',
@@ -36,7 +42,7 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-    <RouterProvider router={router}>
-        <App />
-    </RouterProvider>
+    <Provider store={store}>
+    <RouterProvider router={router} />
+    </Provider>
 )
