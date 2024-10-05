@@ -17,10 +17,12 @@ export default {
       'white': '#FFFBFB',
       'input-line': '#C4C4C4',
       'gray':'#555353',
-      'red': '#FF2511'
+      'red': '#FF2511',
+      'purple': '#4A3561',
     },
     backgroundImage: {
       'gradient-nav-foot': 'linear-gradient(to bottom,#CBBBDD, #DCD1E9, white)',
+      'gradient-pop': 'linear-gradient(to bottom,#5E437C, #795B9A, #C7B0E0)',
     },
     fontFamily: {
       'Nunito': 'Nunito',

@@ -116,7 +116,7 @@ const Signup = () => {
             Create Account
           </button>
         </form>
-        <div className=" flex mt-6 sm:ml-44">
+        <div className=" flex mt-6 sm:ml-36">
           <div className=" bg-input-line h-1 w-52"></div>
           <p className=" text-3xl text-center text-gray">OR</p>
           <div className=" bg-input-line h-1 w-52"></div>
