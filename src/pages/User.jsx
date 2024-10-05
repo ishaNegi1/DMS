@@ -95,35 +95,38 @@ const User = () => {
         <table className="table-auto w-full border-collapse border">
           <thead>
             <tr>
-              <th className="border text-left sm:p-2 text-sm">Name</th>
-              <th className="border text-left sm:p-2 text-sm">Description</th>
-              <th className="border text-left sm:p-2 text-sm">File Type</th>
-              <th className="border text-left sm:p-2 text-sm">Date</th>
-              <th className="border text-left sm:p-2 text-sm">Actions</th>
+              <th className="border text-left sm:p-2 sm:text-sm text-xs">Name</th>
+              <th className="border text-left sm:p-2 sm:text-sm text-xs">Description</th>
+              <th className="border text-left sm:p-2 sm:text-sm text-xs">File Type</th>
+              <th className="border text-left sm:p-2 sm:text-sm text-xs">Date</th>
+              <th className="border text-left sm:p-2 sm:text-sm text-xs">Actions</th>
             </tr>
           </thead>
           <tbody>
             {files.map((file, index) => (
               <tr key={index}>
-                <td className="border sm:p-2">{file.file.name}</td>
-                <td className="border sm:p-2">{file.description}</td>
-                <td className="border sm:p-2">{file.file.type}</td>
-                <td className="border sm:p-2">
-                  {new Date().toLocaleDateString()}
+                <td className="border sm:p-2 text-xs sm:text-sm">{file.file.name}</td>
+                <td className="border sm:p-2 text-xs sm:text-sm">{file.description}</td>
+                <td className="border sm:p-2 text-xs sm:text-sm">{file.file.type}</td>
+                <td className="border sm:p-2 text-xs sm:text-sm">
+                  {new Date().toLocaleDateString()} text-xs
                 </td>
                 <td className="border sm:p-2">
                   <div className="flex flex-col sm:flex-row justify-center items-center">
-                    <Button
-                      text="View"
+                    <button
+                    className="bg-main text-white font-Telex px-1 py-1 sm:px-3 sm:py-1 h-8 rounded-md text-xs sm:text-xl transition-all duration-500 ease-linear transform hover:scale-110"
                       onClick={() =>
                         window.open(URL.createObjectURL(file.file), "_blank")
                       }
-                    />
-                    <Button
-                      text="Delete"
-                      rest="mt-2 mx-1 sm:mt-0 sm:ml-2"
+                    >
+                    View
+                    </button>
+                    <button
+                    className="bg-main text-white font-Telex px-1 py-1 sm:px-3 sm:py-1 h-8 rounded-md text-xs sm:text-xl transition-all duration-500 ease-linear transform hover:scale-110 mt-1 mx-1 sm:mt-0 sm:ml-2"
                       onClick={() => handleDelete(file.file.name)}
-                    />
+                    >
+                     Delete
+                    </button>
                   </div>
                 </td>
               </tr>

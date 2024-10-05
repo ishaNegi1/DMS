@@ -14,7 +14,7 @@ const Create = () => {
     <>
       {show && (
         <div className=" w-full h-full bg-white opacity-95 fixed z-50 flex justify-center items-center">
-          <div className=" w-3/4 h-2/5 sm:w-1/3 rounded-xl bg-gradient-pop flex flex-col justify-center">
+          <div className=" w-3/4 sm:h-2/5 h-3/5 sm:w-1/3 rounded-xl bg-gradient-pop flex flex-col justify-center">
             <div className=" sm:ml-8 ml-2 p-3 sm:mt-5 mt-2">
               <p className=" text-3xl mb-2">Create folder</p>
               <form className=" flex flex-col">
