@@ -69,7 +69,7 @@ const Signup = () => {
         </div>
       </div>
       <div className=" w-full sm:w-1/2 h-screen fixed right-0 top-0 sm:rounded-s-3xl rounded-none sm:border-l-2 border-l-0 border-main sm:bg-white">
-        <p className=" font-Telex text-3xl sm:text-5xl font-medium sm:mt-20 mt-8 ml-10">
+        <p className=" font-Telex text-3xl sm:text-5xl font-medium sm:mt-20 mt-20 ml-10">
           Create Account
         </p>
         <form

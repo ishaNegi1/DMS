@@ -14,6 +14,7 @@ export default {
       'white': '#FFFBFB',
       'input-line': '#C4C4C4',
       'gray':'#555353',
+      'dark-gray': '#3B3B3B',
       'red': '#FF2511',
       'light-red': '#ff4433',
       'purple': '#4A3561',

@@ -113,7 +113,7 @@ const User = () => {
           />
         </div>
       </div>
-      <div className="w-full h-full sm:p-4 p-1 flex flex-wrap justify-center sm:justify-normal" id="main">
+      <div className="w-full h-full sm:p-4 p-1 flex flex-wrap justify-center" id="main">
   {files.map((file, index) => (
     <div
       key={index}
@@ -124,8 +124,8 @@ const User = () => {
     >
       <div className="p-4">
         <div className="flex items-center">
-          <FontAwesomeIcon icon={faFile} className="w-12 h-12" />
-          <div className="ml-4 flex flex-col space-y-2">
+        <FontAwesomeIcon icon={faFile} style={{color: "#353536",}} className="w-12 h-12"/>
+          <div className="ml-4 flex flex-col text-dark-gray">
             <p className="text-lg">
               <b>File Type:</b> {file.file.type}
             </p>
@@ -135,7 +135,7 @@ const User = () => {
           </div>
         </div>
 
-        <div className="mt-4">
+        <div className="mt-4 text-dark-gray">
           <p className="text-lg flex">
             <b>Name:</b>
             <span className="ml-1 fileName break-all">
