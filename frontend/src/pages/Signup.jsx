@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Vector0 from "../components/Vector0";
-import { vector1, circle, google } from "../assets/pictures";
+import { vector1, circle, } from "../assets/pictures";
 import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -116,17 +116,6 @@ const Signup = () => {
             Create Account
           </button>
         </form>
-        <div className=" flex mt-6 sm:ml-36">
-          <div className=" bg-input-line h-1 w-52"></div>
-          <p className=" text-3xl text-center text-gray">OR</p>
-          <div className=" bg-input-line h-1 w-52"></div>
-        </div>
-        <div className=" mt-4 flex justify-center sm:ml-8">
-          <button className=" bg-gray text-white py-2 rounded-lg w-60 flex transition-all duration-500 ease-linear transform hover:scale-110">
-            <img src={google} alt="google" className=" w-7 mx-3" />
-            <p className=" text-lg">Sign up with Google</p>
-          </button>
-        </div>
         <p className="sm:hidden block font-Nunito text-xl my-6 text-center">
           Already have an account?{" "}
           <b className=" text-2xl">
