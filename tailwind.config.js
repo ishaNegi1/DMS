@@ -6,10 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-      animation: {
-                bounce200: 'bounce 0.5s infinite 100ms',
-                bounce400: 'bounce 0.5s infinite 200ms',
-            },
+      
     },
     colors: {
       'main':'#826E98',

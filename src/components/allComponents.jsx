@@ -5,5 +5,6 @@ import Vector0 from './Vector0'
 import Vector1 from './Vector1'
 import Create from './Create'
 import Upload from './Upload'
+import Loader from './Loader'
 
-export{Button, Button0, Footer, Vector0, Vector1, Create, Upload}
+export{Button, Button0, Footer, Vector0, Vector1, Create, Upload, Loader}

@@ -1,13 +1,14 @@
 import {logo, vector1, pic1, pic2, pic3, pic4, circle,} from "../assets/pictures";
-import { Button, Footer, Vector0, Vector1 } from "../components/allComponents";
+import { Button, Footer, Vector0, Vector1, Loader } from "../components/allComponents";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = 'DMS-Home'
@@ -52,12 +53,14 @@ function Home() {
         });
       });
 
+      setLoading(false);
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
-  return (
+   return loading ? <Loader /> : (
     <>
       <div className=" bg-gradient-nav-foot text-black sm:h-24 h-20 flex">
         <div className="flex items-center sm:ml-14 ml-4">

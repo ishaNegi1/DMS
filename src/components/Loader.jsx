@@ -1,14 +1,10 @@
-import React from "react";
+import { Commet } from "react-loading-indicators";
 
 const Loader = () => {
     
   return (
       <div className='flex justify-center items-center h-screen'>
-          <div className='sm:h-8 sm:w-8 h-7 w-7 bg-main rounded-full mr-1 animate-bounce'></div>
-          <div
-              className='sm:h-8 sm:w-8 h-7 w-7 bg-main rounded-full mr-1 animate-bounce200'
-          ></div>
-          <div className = 'sm:h-8 sm:w-8 h-7 w-7 bg-main rounded-full animate-bounce400'></div>
+          <Commet color="#826E98" size="medium" text="" textColor="" />
       </div>
   );
 };
