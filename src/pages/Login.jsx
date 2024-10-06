@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
-
+import service from "../hooks/Api"
 const Login = () => {
   const[error, setError] = useState("")
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    session = await loginUser({ email: email.value, password: password.value });
+    let session =await service.loginUser(email.value, password.value);
     if (session) {
       const userData = await getUserData();
       if (userData) dispatch(login(userData));

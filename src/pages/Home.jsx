@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
-
   useEffect(() => {
     document.title = 'DMS-Home'
       const headings = document.querySelectorAll(".scroll-text .hd");

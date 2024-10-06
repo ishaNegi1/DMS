@@ -4,7 +4,7 @@ import { vector1, circle, google } from "../assets/pictures";
 import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
+import service from "../hooks/Api"
 const Signup = () => {
   const[error, setError] = useState("")
   const dispatch = useDispatch();
@@ -12,13 +12,14 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await createAccount({
-      fullname: fullname.value,
-      email: email.value,
-      password: password.value,
-    });
+    const user = await service.createAccount(
+       fullname.value,
+       email.value,
+       password.value,
+    );
+    console.log(user);//you got email name and _id directly dispatch to redux login 
     if (user) {
-      const user = await getUserData();
+      const user = await getUserData();//no need of this function anywhere 
       if (user) dispatch(login(user));
       navigate("/User");
     }
