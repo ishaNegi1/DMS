@@ -22,7 +22,7 @@ const Upload = () => {
 
   return (
     <>
-    {show && <div className=' w-full h-full bg-white opacity-95 fixed z-50 flex justify-center items-center'>
+    {show && <div className=' w-full h-full bg-white fixed z-50 flex justify-center items-center'>
     <div className='w-3/4 sm:h-1/3 h-1/2 sm:w-1/3 rounded-xl bg-gradient-pop flex flex-col justify-center'>
     <div className=' sm:ml-8 ml-2 p-3 sm:mt-5'>
       <p className=' text-3xl mb-2'>Upload file</p>

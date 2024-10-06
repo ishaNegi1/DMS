@@ -43,6 +43,20 @@ const User = () => {
     dispatch(deleteFile(fileName));
   };
 
+  const handleSearch = (e) => {
+    const main = document.getElementById("main");
+    const items = main.getElementsByClassName("sub");
+    const text = e.target.value.toLowerCase();
+    Array.from(items).forEach((item) => {
+      const name = item.getElementsByClassName("fileName")[0];
+      if (name.textContent.toLowerCase().indexOf(text) != -1) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  };
+
   useEffect(() => {
     document.title = "DMS-User";
   });
@@ -80,7 +94,8 @@ const User = () => {
         <input
           type="text"
           placeholder="Search anything..."
-          className=" sm:w-1/2 w-11/12 h-9 rounded-3xl mt-3 sm:ml-12 mx-2 p-2 border-2 border-main outline-4 outline-main"
+          className=" sm:w-1/2 w-11/12 h-12 rounded-3xl mt-3 sm:ml-12 mx-2 p-2 border-2 border-main outline-4 outline-main"
+          onKeyUp={handleSearch}
         />
         <div className=" flex ml-auto mt-3 sm:mr-24">
           <Button0
@@ -97,10 +112,11 @@ const User = () => {
           />
         </div>
       </div>
-      <div className=" w-full h-full mt-4 sm:p-4 p-1 flex flex-wrap">
+      <div className=" w-full h-full sm:p-4 p-1 flex flex-wrap" id="main">
         {files.map((file, index) => (
           <div
-            className="relative border-2 border-gray-300 rounded-lg w-auto sm:mx-4 mt-2 shadow-lg hover:shadow-2xl hover:shadow-gray shadow-main transition-shadow duration-300"
+            key={index}
+            className="relative border-2 border-gray-300 rounded-lg w-auto sm:mx-4 mx-1 mt-7 shadow-lg hover:shadow-2xl hover:shadow-gray shadow-main transition-shadow duration-300 sub"
             onClick={() =>
               window.open(URL.createObjectURL(file.file), "_blank")
             }
@@ -121,7 +137,9 @@ const User = () => {
               <div className="mt-4">
                 <p className=" text-lg">
                   <b>Name:</b>{" "}
-                  {file.file.name.split(".").slice(0, -1).join(" ")}
+                  <p className=" fileName">
+                    {file.file.name.split(".").slice(0, -1).join(" ")}
+                  </p>
                 </p>
                 <p className="text-lg mt-1">
                   <b>Description:</b> {file.description}
