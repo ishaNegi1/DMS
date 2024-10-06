@@ -35,7 +35,7 @@ const Create = () => {
                   type="text"
                   id="desc"
                   name="desc"
-                  maxLength={80}
+                  maxLength={100}
                   required
                   className=" sm:w-1/2 rounded-md"
                 />

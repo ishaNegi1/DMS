@@ -18,6 +18,7 @@ import {
   faTrashCan,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { faCircleDown } from "@fortawesome/free-regular-svg-icons";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -112,53 +113,65 @@ const User = () => {
           />
         </div>
       </div>
-      <div className=" w-full h-full sm:p-4 p-1 flex flex-wrap" id="main">
-        {files.map((file, index) => (
-          <div
-            key={index}
-            className="relative border-2 border-gray-300 rounded-lg w-auto sm:mx-4 mx-1 mt-7 shadow-lg hover:shadow-2xl hover:shadow-gray shadow-main transition-shadow duration-300 sub"
-            onClick={() =>
-              window.open(URL.createObjectURL(file.file), "_blank")
-            }
-          >
-            <div className="relative p-4">
-              <div className="flex items-center">
-                <FontAwesomeIcon icon={faFile} className="w-12 h-12" />
-                <div className="ml-4 flex sm:flex-col flex-row flex-wrap">
-                  <p className="text-lg">
-                    <b>File Type:</b> {file.file.type}
-                  </p>
-                  <p className="text-lg">
-                    <b>Date:</b> {new Date().toLocaleDateString()}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <p className=" text-lg">
-                  <b>Name:</b>{" "}
-                  <p className=" fileName">
-                    {file.file.name.split(".").slice(0, -1).join(" ")}
-                  </p>
-                </p>
-                <p className="text-lg mt-1">
-                  <b>Description:</b> {file.description}
-                </p>
-              </div>
-            </div>
-            <button className=" ml-4 cursor-pointer">
-              <FontAwesomeIcon
-                icon={faTrashCan}
-                className="w-6 h-6"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDelete(file.file.name);
-                }}
-              />
-            </button>
+      <div className="w-full h-full sm:p-4 p-1 flex flex-wrap justify-center sm:justify-normal" id="main">
+  {files.map((file, index) => (
+    <div
+      key={index}
+      className="relative border-2 border-gray-300 rounded-lg w-64 h-auto sm:mx-4 mx-1 mt-7 shadow-lg hover:shadow-2xl hover:shadow-gray shadow-main transition-shadow duration-300 sub flex flex-col justify-between"
+      onClick={() =>
+        window.open(URL.createObjectURL(file.file), "_blank")
+      }
+    >
+      <div className="p-4">
+        <div className="flex items-center">
+          <FontAwesomeIcon icon={faFile} className="w-12 h-12" />
+          <div className="ml-4 flex flex-col space-y-2">
+            <p className="text-lg">
+              <b>File Type:</b> {file.file.type}
+            </p>
+            <p className="text-lg">
+              <b>Date:</b> {new Date().toLocaleDateString()}
+            </p>
           </div>
-        ))}
+        </div>
+
+        <div className="mt-4">
+          <p className="text-lg flex">
+            <b>Name:</b>
+            <span className="ml-1 fileName break-all">
+              {file.file.name.split(".").slice(0, -1).join(" ")}
+            </span>
+          </p>
+          <p className="text-lg mt-1 break-words whitespace-normal">
+            <b>Description:</b> {file.description}
+          </p>
+        </div>
       </div>
+
+      <div className="flex justify-between items-center p-4">
+        <button className="cursor-pointer">
+          <FontAwesomeIcon
+            icon={faTrashCan}
+            className="w-6 h-6"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDelete(file.file.name);
+            }}
+          />
+        </button>
+        <a
+          href={URL.createObjectURL(file.file)}
+          download={file.file.name}
+          className="cursor-pointer"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <FontAwesomeIcon icon={faCircleDown} className="w-6 h-6" />
+        </a>
+      </div>
+    </div>
+  ))}
+</div>
+
       <Vector1 />
     </>
   );

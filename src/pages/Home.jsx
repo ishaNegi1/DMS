@@ -1,66 +1,76 @@
-import {logo, vector1, pic1, pic2, pic3, pic4, circle,} from "../assets/pictures";
-import { Button, Footer, Vector0, Vector1, Loader } from "../components/allComponents";
+import {
+  logo,
+  vector1,
+  pic1,
+  pic2,
+  pic3,
+  pic4,
+  circle,
+} from "../assets/pictures";
+import {
+  Button,
+  Footer,
+  Vector0,
+  Vector1,
+  Loader,
+} from "../components/allComponents";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, } from "react";
 import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    document.title = 'DMS-Home'
-      const headings = document.querySelectorAll(".scroll-text .hd");
-      const paragraphs = document.querySelectorAll(".scroll-text .txt");
-      headings.forEach((heading) => {
-        const text = heading.innerText.split("");
-        heading.innerHTML = "";
-        text.forEach((char) => {
-          const span = document.createElement("span");
-          span.innerText = char === " " ? "\u00A0" : char;
-          heading.appendChild(span);
-        });
-        gsap.from(heading.children, {
-          scrollTrigger: {
-            trigger: heading,
-            start: "top 90%",
-            end: "top 30%",
-            toggleActions: "play none none reverse",
-            once: false,
-          },
-          opacity: 0,
-          y: 30,
-          duration: 1.5,
-          ease: "power1.out",
-          stagger: 0.1,
-        });
+    document.title = "DMS-Home";
+    const headings = document.querySelectorAll(".scroll-text .hd");
+    const paragraphs = document.querySelectorAll(".scroll-text .txt");
+    headings.forEach((heading) => {
+      const text = heading.innerText.split("");
+      heading.innerHTML = "";
+      text.forEach((char) => {
+        const span = document.createElement("span");
+        span.innerText = char === " " ? "\u00A0" : char;
+        heading.appendChild(span);
       });
-      paragraphs.forEach((paragraph) => {
-        gsap.from(paragraph, {
-          scrollTrigger: {
-            trigger: paragraph,
-            start: "top 90%",
-            end: "top 30%",
-            toggleActions: "play none none reverse",
-            once: false,
-          },
-          opacity: 0,
-          y: 20,
-          duration: 1,
-          ease: "power1.out",
-        });
+      gsap.from(heading.children, {
+        scrollTrigger: {
+          trigger: heading,
+          start: "top 90%",
+          end: "top 30%",
+          toggleActions: "play none none reverse",
+          once: false,
+        },
+        opacity: 0,
+        y: 30,
+        duration: 1.5,
+        ease: "power1.out",
+        stagger: 0.1,
       });
-
-      setLoading(false);
+    });
+    paragraphs.forEach((paragraph) => {
+      gsap.from(paragraph, {
+        scrollTrigger: {
+          trigger: paragraph,
+          start: "top 90%",
+          end: "top 30%",
+          toggleActions: "play none none reverse",
+          once: false,
+        },
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        ease: "power1.out",
+      });
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
-   return loading ? <Loader /> : (
+  return (
     <>
       <div className=" bg-gradient-nav-foot text-black sm:h-24 h-20 flex">
         <div className="flex items-center sm:ml-14 ml-4">

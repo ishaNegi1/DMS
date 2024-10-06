@@ -4,6 +4,7 @@ const initialState = {
   createStatus: false,
   uploadStatus: false,
   files: [],
+  folders: [],
 };
 
 const uploadCreate = createSlice({
