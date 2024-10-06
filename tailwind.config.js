@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-      
+
     },
     colors: {
       'main':'#826E98',
@@ -15,6 +15,7 @@ export default {
       'input-line': '#C4C4C4',
       'gray':'#555353',
       'red': '#FF2511',
+      'light-red': '#ff4433',
       'purple': '#4A3561',
     },
     backgroundImage: {
