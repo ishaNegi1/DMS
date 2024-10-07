@@ -5,22 +5,23 @@ import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
+import service from "../hooks/Api";
 
 const Login = () => {
-  const[error, setError] = useState("")
+  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    session = await loginUser({ email: email.value, password: password.value });
+    let session = await service.loginUser(email, password);
     if (session) {
-      const userData = await getUserData();
-      if (userData) dispatch(login(userData));
+      dispatch(login(session));
       navigate("/User");
-    }
-    else{
-      setError("Invalid email or password.")
+    } else {
+      setError("Invalid email or password.");
     }
   };
 
@@ -77,7 +78,8 @@ const Login = () => {
           <input
             type="email"
             id="email"
-            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
@@ -88,7 +90,8 @@ const Login = () => {
           <input
             type="password"
             id="password"
-            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />

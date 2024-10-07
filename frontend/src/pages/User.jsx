@@ -34,9 +34,7 @@ const User = () => {
   };
 
   const logoutHandler = () => {
-    logout().then(() => {
       dispatch(logout());
-    });
     navigate("/");
   };
 
@@ -71,8 +69,7 @@ const User = () => {
             <FontAwesomeIcon icon={faUser} className=" w-5 h-6" />
           </div>
           <p className="font-Nunito px-2 font-semibold text-xl sm:text-2xl">
-            {/* {userData.fullname}  */}
-            User
+            {userData.user.name} 
           </p>
         </div>
         <div className="ml-auto flex items-center sm:mr-1 mr-2">
@@ -109,7 +106,7 @@ const User = () => {
             text="Create folder"
             icon=<FontAwesomeIcon icon={faFolderPlus} />
             extra="w-5 m-1"
-            onClick={handleCreate}
+            // onClick={handleCreate}
           />
         </div>
       </div>
@@ -152,6 +149,7 @@ const User = () => {
         <button className="cursor-pointer">
           <FontAwesomeIcon
             icon={faTrashCan}
+            style={{color: "#353536",}}
             className="w-6 h-6"
             onClick={(e) => {
               e.stopPropagation();
@@ -165,7 +163,7 @@ const User = () => {
           className="cursor-pointer"
           onClick={(e) => e.stopPropagation()}
         >
-          <FontAwesomeIcon icon={faCircleDown} className="w-6 h-6" />
+          <FontAwesomeIcon icon={faCircleDown} style={{color: "#353536",}} className="w-6 h-6" />
         </a>
       </div>
     </div>
