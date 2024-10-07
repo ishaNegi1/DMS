@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Vector0 from "../components/Vector0";
-import { vector1, circle, } from "../assets/pictures";
+import { vector1, circle } from "../assets/pictures";
 import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
+import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
+import service from "../hooks/Api";
 
 const Signup = () => {
-  const[error, setError] = useState("")
+  const [error, setError] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await createAccount({
-      fullname: fullname.value,
-      email: email.value,
-      password: password.value,
-    });
+    const user = await service.createAccount(fullname, email, password);
+    // console.log(user);
     if (user) {
-      const user = await getUserData();
-      if (user) dispatch(login(user));
+      dispatch(login(user));
       navigate("/User");
-    }
-    else{
-      setError("User already exists.")
+    } else {
+      setError("User already exists.");
     }
   };
 
@@ -82,7 +82,8 @@ const Signup = () => {
           <input
             type="text"
             id="fullname"
-            name="fullname"
+            value={fullname}
+            onChange={(e) => setFullname(e.target.value)}
             required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
@@ -93,7 +94,8 @@ const Signup = () => {
           <input
             type="email"
             id="email"
-            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
@@ -104,7 +106,8 @@ const Signup = () => {
           <input
             type="password"
             id="password"
-            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
