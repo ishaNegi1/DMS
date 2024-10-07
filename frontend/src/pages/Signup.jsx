@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Vector0 from "../components/Vector0";
+import {Vector0, Loader} from '../components/allComponents';
 import { vector1, circle } from "../assets/pictures";
 import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import service from "../hooks/Api";
 
 const Signup = () => {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -17,12 +18,15 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const user = await service.createAccount(fullname, email, password);
     // console.log(user);
     if (user) {
       dispatch(login(user));
+      setLoading(false);
       navigate("/User");
     } else {
+      setLoading(false);
       setError("User already exists.");
     }
   };
@@ -45,7 +49,7 @@ const Signup = () => {
     });
   }, []);
 
-  return (
+  return loading ? <Loader /> : (
     <>
       <Vector0 />
       <div className=" sm:block hidden">

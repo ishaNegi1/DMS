@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Vector0 from "../components/Vector0";
+import {Vector0, Loader} from '../components/allComponents';
 import { vector1, circle } from "../assets/pictures";
 import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,7 +7,9 @@ import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import service from "../hooks/Api";
 
+
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,11 +18,14 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     let session = await service.loginUser(email, password);
     if (session) {
       dispatch(login(session));
+      setLoading(false);
       navigate("/User");
     } else {
+      setLoading(false);
       setError("Invalid email or password.");
     }
   };
@@ -43,7 +48,7 @@ const Login = () => {
     });
   }, []);
 
-  return (
+  return loading ? <Loader /> : (
     <>
       <Vector0 />
       <div className=" sm:block hidden">

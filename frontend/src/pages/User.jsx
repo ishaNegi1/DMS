@@ -26,9 +26,9 @@ const User = () => {
   const userData = useSelector((state) => state.auth.userData);
   const files = useSelector((state) => state.uploadCreate.files);
 
-  const handleCreate = () => {
-    dispatch(createFolder(true));
-  };
+  // const handleCreate = () => {
+  //   dispatch(createFolder(true));
+  // };
   const handleUpload = () => {
     dispatch(uploadFile(true));
   };
