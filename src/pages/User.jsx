@@ -47,6 +47,10 @@ const User = () => {
   };
   const handleAddFolder = async () => {
     try {
+      if (selectedFolder) {
+        alert('Go back to dashboard to create another folder');
+        return;
+      }
       const folderName = prompt("Enter folder name:");
       if (!folderName) return;
 
