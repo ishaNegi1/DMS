@@ -1,26 +1,39 @@
 import React, { useEffect, useState } from "react";
-import Vector0 from "../components/Vector0";
+import {Vector0, Loader} from '../components/allComponents';
 import { vector1, circle } from "../assets/pictures";
 import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
-import service from "../hooks/Api"
+import service from "../hooks/Api";
+
+
 const Login = () => {
-  const[error, setError] = useState("")
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD:src/pages/Login.jsx
     let session =await service.loginUser(email.value, password.value);
     console.log(session)
     if (session) {
        dispatch(login(session));
+=======
+    setLoading(true);
+    let session = await service.loginUser(email, password);
+    if (session) {
+      dispatch(login(session));
+      setLoading(false);
+>>>>>>> 23b64c3eea126a456cc566b2c1b0b0e3fe2fc648:frontend/src/pages/Login.jsx
       navigate("/User");
-    }
-    else{
-      setError("Invalid email or password.")
+    } else {
+      setLoading(false);
+      setError("Invalid email or password.");
     }
   };
 
@@ -42,7 +55,7 @@ const Login = () => {
     });
   }, []);
 
-  return (
+  return loading ? <Loader /> : (
     <>
       <Vector0 />
       <div className=" sm:block hidden">
@@ -77,7 +90,8 @@ const Login = () => {
           <input
             type="email"
             id="email"
-            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
@@ -88,7 +102,8 @@ const Login = () => {
           <input
             type="password"
             id="password"
-            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />

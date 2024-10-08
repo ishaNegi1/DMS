@@ -1,18 +1,29 @@
 import React, { useEffect, useState } from "react";
-import Vector0 from "../components/Vector0";
-import { vector1, circle, google } from "../assets/pictures";
+import {Vector0, Loader} from '../components/allComponents';
+import { vector1, circle } from "../assets/pictures";
 import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
+import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD:src/pages/Signup.jsx
 import service from "../hooks/Api"
 import { login } from "../store/authSlice";
+=======
+import service from "../hooks/Api";
+
+>>>>>>> 23b64c3eea126a456cc566b2c1b0b0e3fe2fc648:frontend/src/pages/Signup.jsx
 const Signup = () => {
-  const[error, setError] = useState("")
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD:src/pages/Signup.jsx
     const user = await service.createAccount(
        fullname.value,
        email.value,
@@ -24,6 +35,18 @@ const Signup = () => {
     }
     else{
       setError("User already exists.")
+=======
+    setLoading(true);
+    const user = await service.createAccount(fullname, email, password);
+    // console.log(user);
+    if (user) {
+      dispatch(login(user));
+      setLoading(false);
+      navigate("/Login");
+    } else {
+      setLoading(false);
+      setError("User already exists.");
+>>>>>>> 23b64c3eea126a456cc566b2c1b0b0e3fe2fc648:frontend/src/pages/Signup.jsx
     }
   };
 
@@ -45,7 +68,7 @@ const Signup = () => {
     });
   }, []);
 
-  return (
+  return loading ? <Loader /> : (
     <>
       <Vector0 />
       <div className=" sm:block hidden">
@@ -69,7 +92,7 @@ const Signup = () => {
         </div>
       </div>
       <div className=" w-full sm:w-1/2 h-screen fixed right-0 top-0 sm:rounded-s-3xl rounded-none sm:border-l-2 border-l-0 border-main sm:bg-white">
-        <p className=" font-Telex text-3xl sm:text-5xl font-medium sm:mt-20 mt-8 ml-10">
+        <p className=" font-Telex text-3xl sm:text-5xl font-medium sm:mt-20 mt-20 ml-10">
           Create Account
         </p>
         <form
@@ -82,7 +105,8 @@ const Signup = () => {
           <input
             type="text"
             id="fullname"
-            name="fullname"
+            value={fullname}
+            onChange={(e) => setFullname(e.target.value)}
             required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
@@ -93,7 +117,8 @@ const Signup = () => {
           <input
             type="email"
             id="email"
-            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
@@ -104,7 +129,8 @@ const Signup = () => {
           <input
             type="password"
             id="password"
-            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
           />
@@ -116,17 +142,6 @@ const Signup = () => {
             Create Account
           </button>
         </form>
-        <div className=" flex mt-6 sm:ml-44">
-          <div className=" bg-input-line h-1 w-52"></div>
-          <p className=" text-3xl text-center text-gray">OR</p>
-          <div className=" bg-input-line h-1 w-52"></div>
-        </div>
-        <div className=" mt-4 flex justify-center sm:ml-8">
-          <button className=" bg-gray text-white py-2 rounded-lg w-60 flex transition-all duration-500 ease-linear transform hover:scale-110">
-            <img src={google} alt="google" className=" w-7 mx-3" />
-            <p className=" text-lg">Sign up with Google</p>
-          </button>
-        </div>
         <p className="sm:hidden block font-Nunito text-xl my-6 text-center">
           Already have an account?{" "}
           <b className=" text-2xl">
