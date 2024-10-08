@@ -24,7 +24,7 @@ const Signup = () => {
     if (user) {
       dispatch(login(user));
       setLoading(false);
-      navigate("/User");
+      navigate("/Login");
     } else {
       setLoading(false);
       setError("User already exists.");

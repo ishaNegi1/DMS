@@ -73,21 +73,27 @@ function Home() {
   return (
     <>
       <div className=" bg-gradient-nav-foot text-black sm:h-24 h-20 flex">
-        <div className="flex items-center sm:ml-14 ml-4">
-          <img src={logo} alt="logo" className=" w-11 h-11 sm:w-16 sm:h-16" />
-          <p className="font-Nunito px-2 font-semibold text-2xl sm:text-3xl">
+        <div className="flex items-center sm:ml-14 ml-2">
+          <img src={logo} alt="logo" className=" w-7 h-7 sm:w-16 sm:h-16" />
+          <p className="font-Nunito px-2 font-semibold text-xl sm:text-3xl">
             DMS
           </p>
         </div>
         <div className="ml-auto flex items-center sm:mr-7 mr-2">
           <Link
             to="/"
-            className="font-Telex sm:mr-14 mr-2 text-lg sm:text-xl transition-all duration-500 ease-linear transform hover:scale-110 px-2 py-1 sm:px-3 sm:py-1"
+            className="font-Telex sm:mr-10 mr-2 text-sm sm:text-xl transition-all duration-500 ease-linear transform hover:scale-110 py-1"
           >
             Home
           </Link>
+          <Link
+            to="/User"
+            className="font-Telex sm:mr-10 mr-2 text-sm sm:text-xl transition-all duration-500 ease-linear transform hover:scale-110 py-1"
+          >
+            Dashboard
+          </Link>
           <Button text="Login" rest="sm:mr-7 mr-2 sm:h-10" to="Login" />
-          <Button text="Signup" rest="sm:mr-16 mr-2 sm:h-10" to="Signup" />
+          <Button text="Signup" rest="sm:mr-16 mr-1 sm:h-10" to="Signup" />
         </div>
       </div>
       <Vector0 />

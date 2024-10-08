@@ -19,11 +19,13 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircleDown } from "@fortawesome/free-regular-svg-icons";
+import { notFound } from "../assets/pictures";
 
 const User = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+  const status = useSelector((state) => state.auth.status)
   const files = useSelector((state) => state.uploadCreate.files);
 
   // const handleCreate = () => {
@@ -59,7 +61,11 @@ const User = () => {
   useEffect(() => {
     document.title = "DMS-User";
   });
-  return (
+
+  return !status ? <div className='flex flex-col justify-center items-center h-screen'>
+  <img src={notFound} alt="not found" className=" w-80 -mt-24"/>
+  <p className=" font-Telex text-xl text-center">Oops! It looks like you're not logged in.</p>
+</div> : (
     <>
       <Create />
       <Upload />
@@ -69,7 +75,7 @@ const User = () => {
             <FontAwesomeIcon icon={faUser} className=" w-5 h-6" />
           </div>
           <p className="font-Nunito px-2 font-semibold text-xl sm:text-2xl">
-            {userData.user.name} 
+          {userData && userData.user ? userData.user.name : "User"}
           </p>
         </div>
         <div className="ml-auto flex items-center sm:mr-1 mr-2">
