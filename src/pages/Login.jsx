@@ -14,9 +14,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let session =await service.loginUser(email.value, password.value);
+    console.log(session)
     if (session) {
-      const userData = await getUserData();
-      if (userData) dispatch(login(userData));
+       dispatch(login(session));
       navigate("/User");
     }
     else{

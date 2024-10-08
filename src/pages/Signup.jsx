@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import service from "../hooks/Api"
+import { login } from "../store/authSlice";
 const Signup = () => {
   const[error, setError] = useState("")
   const dispatch = useDispatch();
@@ -17,10 +18,8 @@ const Signup = () => {
        email.value,
        password.value,
     );
-    console.log(user);//you got email name and _id directly dispatch to redux login 
     if (user) {
-      const user = await getUserData();//no need of this function anywhere 
-      if (user) dispatch(login(user));
+      dispatch(login(user));
       navigate("/User");
     }
     else{
