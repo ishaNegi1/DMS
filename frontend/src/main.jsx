@@ -28,6 +28,10 @@ const router = createBrowserRouter([
         element: <User />
     },
     {
+        path: '/User/:id/*',
+        element: <User />
+    },
+    {
         path: '/Signup/Login',
         element: <Navigate to="/Login" replace={true} />
     },

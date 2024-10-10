@@ -3,10 +3,9 @@ import {Vector0, Loader} from '../components/allComponents';
 import { vector1, circle } from "../assets/pictures";
 import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
-import service from "../hooks/Api";
-
+import service from "../hooks/Api"
+import { login } from "../store/authSlice";
 const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
