@@ -237,12 +237,12 @@ const User = () => {
       {isDialogOpen && (
         <div className="fixed inset-0 w-full h-full bg-white z-50 flex justify-center items-center">
           <div className="bg-gradient-pop w-11/12 sm:w-1/3 h-auto p-6 rounded-xl">
-            <p className=" text-3xl mb-5">Upload file</p>
+            <p className=" text-3xl mb-5 text-white">Upload file</p>
             <input
               type="file"
               id="file-input"
               onChange={handleFileChange}
-              className="mb-4"
+              className="mb-4 text-white"
             />
             <div className=" flex flex-col flex-wrap justify-center items-center">
               <button
@@ -265,8 +265,8 @@ const User = () => {
       {isAddFolder && (
         <div className="fixed inset-0 w-full h-full bg-white z-50 flex justify-center items-center">
           <div className="bg-gradient-pop w-11/12 sm:w-1/3 h-auto p-6 rounded-xl">
-            <p className=" text-3xl mb-3">Create folder</p>
-            <label htmlFor="name" className=" mb-2 mr-1 text-xl font-medium">
+            <p className=" text-3xl mb-3 text-white">Create folder</p>
+            <label htmlFor="name" className=" mb-2 mr-1 text-xl font-medium text-white">
               Name
             </label>
             <input
@@ -297,7 +297,7 @@ const User = () => {
       {isFileCheckOpen && (
         <div className="fixed inset-0 w-full h-full bg-white z-50 flex justify-center items-center">
           <div className="bg-gradient-pop w-11/12 sm:w-1/3 h-auto p-6 rounded-xl text-center">
-            <p className=" text-2xl">Open/Create a folder to upload files</p>
+            <p className=" text-white text-2xl">Open/Create a folder to upload files</p>
 
             <button
               className="mt-4 bg-purple text-white px-4 py-2 rounded-md hover:scale-110 transition-all duration-500 ease-linear w-2/4"
@@ -312,7 +312,7 @@ const User = () => {
       {isSelectedFolder && (
         <div className="fixed inset-0 w-full h-full bg-white z-50 flex justify-center items-center">
           <div className="bg-gradient-pop w-11/12 sm:w-1/3 h-auto p-6 rounded-xl text-center">
-            <p className=" text-2xl text-center">
+            <p className=" text-white text-2xl text-center">
               Go back to dashboard to create another folder
             </p>
 
@@ -334,7 +334,7 @@ const User = () => {
               {folders?.length > 0 ? (
                 folders?.map((data, index) => (
                   <div
-                    className="relative border-2 border-gray rounded-lg w-auto h-auto sm:mx-4 mx-1 mt-5 shadow-lg hover:shadow-2xl hover:shadow-dark-gray shadow-gray transition-shadow duration-300 flex items-center justify-center sub px-4 py-2"
+                    className="relative rounded-lg w-auto h-auto sm:mx-4 mx-1 mt-5 shadow-lg hover:shadow-2xl hover:shadow-dark-gray shadow-gray transition-shadow duration-300 flex items-center justify-center sub px-4 py-2 bg-white bg-opacity-75"
                     key={data.folder._id || index}
                     onClick={() => handleFolderClick(data.folder)}
                   >
@@ -382,7 +382,7 @@ const User = () => {
                     onClick={() => handlestream(file?._id)}
                   >
                     <div
-                      className="relative border-2 border-gray rounded-lg w-auto h-auto sm:mx-4 mx-1 mt-5 shadow-lg hover:shadow-2xl hover:shadow-dark-gray shadow-gray transition-shadow duration-300 flex items-center justify-center sub px-4 py-2"
+                      className="relative rounded-lg w-auto h-auto sm:mx-4 mx-1 mt-5 shadow-lg hover:shadow-2xl hover:shadow-dark-gray shadow-gray transition-shadow duration-300 flex items-center justify-center sub px-4 py-2 bg-white bg-opacity-75"
                       key={file?._id || index}
                     >
                       <p className="text-center text-xl font-Nunito font-semibold fileName break-words overflow-hidden">
