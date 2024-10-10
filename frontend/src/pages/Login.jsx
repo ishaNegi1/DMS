@@ -18,18 +18,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-<<<<<<< HEAD:src/pages/Login.jsx
-    let session =await service.loginUser(email.value, password.value);
-    console.log(session)
-    if (session) {
-       dispatch(login(session));
-=======
     setLoading(true);
     let session = await service.loginUser(email, password);
     if (session) {
       dispatch(login(session));
       setLoading(false);
->>>>>>> 23b64c3eea126a456cc566b2c1b0b0e3fe2fc648:frontend/src/pages/Login.jsx
       navigate("/User");
     } else {
       setLoading(false);

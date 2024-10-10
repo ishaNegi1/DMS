@@ -3,15 +3,9 @@ import {Vector0, Loader} from '../components/allComponents';
 import { vector1, circle } from "../assets/pictures";
 import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
-<<<<<<< HEAD:src/pages/Signup.jsx
 import service from "../hooks/Api"
 import { login } from "../store/authSlice";
-=======
-import service from "../hooks/Api";
-
->>>>>>> 23b64c3eea126a456cc566b2c1b0b0e3fe2fc648:frontend/src/pages/Signup.jsx
 const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -23,19 +17,6 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-<<<<<<< HEAD:src/pages/Signup.jsx
-    const user = await service.createAccount(
-       fullname.value,
-       email.value,
-       password.value,
-    );
-    if (user) {
-      dispatch(login(user));
-      navigate("/User");
-    }
-    else{
-      setError("User already exists.")
-=======
     setLoading(true);
     const user = await service.createAccount(fullname, email, password);
     // console.log(user);
@@ -46,7 +27,6 @@ const Signup = () => {
     } else {
       setLoading(false);
       setError("User already exists.");
->>>>>>> 23b64c3eea126a456cc566b2c1b0b0e3fe2fc648:frontend/src/pages/Signup.jsx
     }
   };
 
