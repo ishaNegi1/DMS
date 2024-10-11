@@ -2,14 +2,11 @@ import axios from 'axios'
 axios.defaults.withCredentials = true;
 async function createAccount(fullname, email, password) {
     try {
-      
       const response = await axios.post('https://backend-dms-rril.onrender.com/api/user/signup', {
         fullname,
         email,
         password
       });
-  
-      console.log('Account created:', response.data);
       return response.data;
     } catch (error) {
       console.error('Error creating account:', error.response ? error.response.data : error.message);
@@ -23,10 +20,9 @@ async function loginUser(email, password) {
         password,
       },{withCredentials:true});
   
-      console.log('Account created:', response.data);
       return response.data;
     } catch (error) {
-      console.error('Error creating account:', error.response ? error.response.data : error.message);
+      console.error('Error Logging account:', error.response ? error.response.data : error.message);
     }
   }
 async function logoutUser() {
@@ -35,7 +31,7 @@ async function logoutUser() {
       const response = await axios.post('https://backend-dms-rril.onrender.com/api/user/logout',{withCredentials:true});
       return response.data;
     } catch (error) {
-      console.error('Error creating account:', error.response ? error.response.data : error.message);
+      console.error('Error Logging out:', error.response ? error.response.data : error.message);
     }
   }
 async function createFolder(userId,folderName) {
@@ -46,7 +42,7 @@ async function createFolder(userId,folderName) {
       },{withCredentials:true});
       return response.data;
     } catch (error) {
-      console.error('Error creating account:', error.response ? error.response.data : error.message);
+      console.error('Error creating Folder:', error.response ? error.response.data : error.message);
     }
   }
 async function getFoldersnFiles(userId) {
@@ -55,7 +51,7 @@ async function getFoldersnFiles(userId) {
       const response = await axios.get(`https://backend-dms-rril.onrender.com/api/upload/folders/${userId}`);
       return response.data;
     } catch (error) {
-      console.error('Error creating account:', error.response ? error.response.data : error.message);
+      console.error('Error Getting Folders and Files :', error.response ? error.response.data : error.message);
     }
   }
 async function Addfile(file) {
@@ -66,37 +62,33 @@ async function Addfile(file) {
           'Content-Type': 'multipart/form-data', 
         },
       });
-      console.log(response);
       return response.data;
     } catch (error) {
-      console.error('Error creating account:', error.response ? error.response.data : error.message);
+      console.error('Error Adding File:', error.response ? error.response.data : error.message);
     }
   }
 async function streamfile(folderId,fileId) {
     try {
-      console.log(folderId,fileId)
       const response = await axios.get(`https://backend-dms-rril.onrender.com/api/upload/stream/${folderId}/${fileId}`);
       return response.data;
     } catch (error) {
-      console.error('Error creating account:', error.response ? error.response.data : error.message);
+      console.error('Error Stream File:', error.response ? error.response.data : error.message);
     }
   }
   async function deleteFile(folderId,fileId) {
     try {
-      console.log(folderId,fileId)
       const response = await axios.post(`https://backend-dms-rril.onrender.com/api/upload/filedelete/${folderId}/${fileId}`);
       return response.data;
     } catch (error) {
-      console.error('Error creating account:', error.response ? error.response.data : error.message);
+      console.error('Error Deleting File:', error.response ? error.response.data : error.message);
     }
   }
   async function deleteFolder(folderId) {
     try {
-      console.log(folderId,fileId)
       const response = await axios.post(`https://backend-dms-rril.onrender.com/api/upload/Removefolder/${folderId}`);
       return response.data;
     } catch (error) {
-      console.error('Error creating account:', error.response ? error.response.data : error.message);
+      console.error('Error Deleting Folder:', error.response ? error.response.data : error.message);
     }
   }
   export default { createAccount, loginUser ,logoutUser,createFolder,getFoldersnFiles,Addfile,streamfile,deleteFile,deleteFolder};
