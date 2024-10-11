@@ -81,4 +81,22 @@ async function streamfile(folderId,fileId) {
       console.error('Error creating account:', error.response ? error.response.data : error.message);
     }
   }
-  export default { createAccount, loginUser ,logoutUser,createFolder,getFoldersnFiles,Addfile,streamfile};
+  async function deleteFile(folderId,fileId) {
+    try {
+      console.log(folderId,fileId)
+      const response = await axios.post(`https://backend-dms-rril.onrender.com/api/upload/filedelete/${folderId}/${fileId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error creating account:', error.response ? error.response.data : error.message);
+    }
+  }
+  async function deleteFolder(folderId) {
+    try {
+      console.log(folderId,fileId)
+      const response = await axios.post(`https://backend-dms-rril.onrender.com/api/upload/Removefolder/${folderId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error creating account:', error.response ? error.response.data : error.message);
+    }
+  }
+  export default { createAccount, loginUser ,logoutUser,createFolder,getFoldersnFiles,Addfile,streamfile,deleteFile,deleteFolder};
