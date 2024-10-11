@@ -391,7 +391,7 @@ const User = () => {
             >
               Back to Folders
             </button>
-            <p className="font-Telex font-medium text-2xl mb-3 mt-3">
+            <p className="font-Telex font-medium text-2xl mb-3 mt-3 break-words overflow-hidden">
               Folders/{selectedFolder.name}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
