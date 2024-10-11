@@ -29,6 +29,7 @@ const User = () => {
   // console.log(selectedFile)
 
   useEffect(() => {
+    document.title = "DMS-User";
     setUsername(userData?.user?.name);
     const fetchFolders = async () => {
       try {
@@ -71,7 +72,6 @@ const User = () => {
   const handleFolderCreate = async () => {
     const folderName = document.querySelector(".folderInput").value;
     if (!folderName) return;
-
     const newFolder = await service.createFolder(
       userData?.user?._id,
       folderName
@@ -109,7 +109,12 @@ const User = () => {
   };
 
   const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+    } else {
+      setSelectedFile(null);
+    }
   };
 
   const uploadfilecheck = () => {
@@ -120,12 +125,14 @@ const User = () => {
     }
   };
 
-  const handleFileUpload = async () => {
+  const handleFileUpload = async (e) => {
+    e.preventDefault();
     if (!selectedFile || !selectedFolder) return;
     const formData = new FormData();
     formData.append("folderId", selectedFolder._id);
     formData.append("userId", userData?.user?._id);
     formData.append("file", selectedFile);
+
     try {
       const uploadedFile = await service.Addfile(formData);
       console.log("File uploaded:", uploadedFile);
@@ -143,6 +150,7 @@ const User = () => {
       console.error("Error uploading file:", error);
     } finally {
       setIsDialogOpen(false);
+      setSelectedFile(null);
     }
   };
 
@@ -172,7 +180,8 @@ const User = () => {
     Array.from(items).forEach((item) => {
       const name = item.querySelector(".fileName").textContent.toLowerCase();
       if (name.includes(text)) {
-        item.style.display = "block";
+        item.style.display = "flex";
+        item.style.justifyContent = "space-between";
       } else {
         item.style.display = "none";
       }
@@ -218,7 +227,7 @@ const User = () => {
         <input
           type="text"
           placeholder="Search anything..."
-          className=" sm:w-1/2 w-11/12 h-12 rounded-3xl mt-3 sm:ml-12 mx-2 p-2 border-2 border-main outline-4 outline-main"
+          className=" sm:w-1/2 w-11/12 h-12 rounded-3xl mt-3 sm:ml-12 mx-2 px-4 border-2 border-main outline-4 outline-main text-xl"
           onKeyUp={handleSearch}
         />
         <div className=" flex ml-auto mt-3 sm:mr-24">
@@ -238,26 +247,29 @@ const User = () => {
         <div className="fixed inset-0 w-full h-full bg-white z-50 flex justify-center items-center">
           <div className="bg-gradient-pop w-11/12 sm:w-1/3 h-auto p-6 rounded-xl">
             <p className=" text-3xl mb-5 text-white">Upload file</p>
-            <input
-              type="file"
-              id="file-input"
-              onChange={handleFileChange}
-              className="mb-4 text-white"
-            />
-            <div className=" flex flex-col flex-wrap justify-center items-center">
-              <button
-                className="bg-purple text-white px-4 py-2 rounded-md hover:scale-110 transition-all duration-500 ease-linear w-3/4"
-                onClick={handleFileUpload}
-              >
-                Upload
-              </button>
-              <button
-                className="mt-4 bg-purple text-white px-4 py-2 rounded-md hover:scale-110 transition-all duration-500 ease-linear w-3/4"
-                onClick={() => setIsDialogOpen(false)}
-              >
-                Close
-              </button>
-            </div>
+            <form>
+              <input
+                type="file"
+                id="file-input"
+                required
+                onChange={handleFileChange}
+                className="mb-4 text-white"
+              />
+              <div className=" flex flex-col flex-wrap justify-center items-center">
+                <button
+                  className="bg-purple text-white px-4 py-2 rounded-md hover:scale-110 transition-all duration-500 ease-linear w-3/4"
+                  onClick={handleFileUpload}
+                >
+                  Upload
+                </button>
+                <button
+                  className="mt-4 bg-purple text-white px-4 py-2 rounded-md hover:scale-110 transition-all duration-500 ease-linear w-3/4"
+                  onClick={() => setIsDialogOpen(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
@@ -266,7 +278,10 @@ const User = () => {
         <div className="fixed inset-0 w-full h-full bg-white z-50 flex justify-center items-center">
           <div className="bg-gradient-pop w-11/12 sm:w-1/3 h-auto p-6 rounded-xl">
             <p className=" text-3xl mb-3 text-white">Create folder</p>
-            <label htmlFor="name" className=" mb-2 mr-1 text-xl font-medium text-white">
+            <label
+              htmlFor="name"
+              className=" mb-2 mr-1 text-xl font-medium text-white"
+            >
               Name
             </label>
             <input
@@ -297,7 +312,9 @@ const User = () => {
       {isFileCheckOpen && (
         <div className="fixed inset-0 w-full h-full bg-white z-50 flex justify-center items-center">
           <div className="bg-gradient-pop w-11/12 sm:w-1/3 h-auto p-6 rounded-xl text-center">
-            <p className=" text-white text-2xl">Open/Create a folder to upload files</p>
+            <p className=" text-white text-2xl">
+              Open/Create a folder to upload files
+            </p>
 
             <button
               className="mt-4 bg-purple text-white px-4 py-2 rounded-md hover:scale-110 transition-all duration-500 ease-linear w-2/4"
@@ -334,18 +351,21 @@ const User = () => {
               {folders?.length > 0 ? (
                 folders?.map((data, index) => (
                   <div
-                    className="relative rounded-lg w-auto h-auto sm:mx-4 mx-1 mt-5 shadow-lg hover:shadow-2xl hover:shadow-dark-gray shadow-gray transition-shadow duration-300 flex items-center justify-center sub px-4 py-2 bg-white bg-opacity-75"
+                    className="relative rounded-lg w-auto h-auto sm:mx-4 px-2 mt-5 shadow-lg shadow-gray flex justify-between sub py-2 bg-white bg-opacity-75 "
                     key={data.folder._id || index}
                     onClick={() => handleFolderClick(data.folder)}
                   >
-                    <p className="text-center text-xl font-Nunito font-semibold fileName break-words overflow-hidden">
+                    <p className=" text-xl font-Nunito font-semibold fileName break-words overflow-hidden">
                       {data.folder.name}
                     </p>
-                    <button className="cursor-pointer ml-auto">
+                    <button
+                      className=" cursor-pointer transition-transform duration-300 hover:scale-110
+                    "
+                    >
                       <FontAwesomeIcon
                         icon={faTrashCan}
                         style={{ color: "#353536" }}
-                        className="w-5 h-5 ml-2"
+                        className="w-5 h-5 ml-2 transition-transform duration-300"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleDeleteFolder(data.folder._id);
@@ -377,30 +397,25 @@ const User = () => {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {files?.length > 0 ? (
                 files?.map((file, index) => (
-                  <Link
+                  <div
+                    className="relative rounded-lg w-auto h-auto sm:mx-4 mx-1 mt-5 shadow-lg shadow-gray transition-shadow duration-300 flex items-center justify-between sub px-4 py-2 bg-white bg-opacity-75"
                     key={file?._id || index}
                     onClick={() => handlestream(file?._id)}
                   >
-                    <div
-                      className="relative rounded-lg w-auto h-auto sm:mx-4 mx-1 mt-5 shadow-lg hover:shadow-2xl hover:shadow-dark-gray shadow-gray transition-shadow duration-300 flex items-center justify-center sub px-4 py-2 bg-white bg-opacity-75"
-                      key={file?._id || index}
-                    >
-                      <p className="text-center text-xl font-Nunito font-semibold fileName break-words overflow-hidden">
-                        {file?.originalName}
-                      </p>
-                      <button className="cursor-pointer ml-auto">
-                        <FontAwesomeIcon
-                          icon={faTrashCan}
-                          style={{ color: "#353536" }}
-                          className="w-5 h-5 ml-2"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleDeleteFile(file._id);
-                          }}
-                        />
-                      </button>
-                    </div>
-                  </Link>
+                    <p className="text-center text-xl font-Nunito font-semibold fileName break-words overflow-hidden">
+                      {file?.originalName}
+                    </p>
+                    <button className="cursor-pointer ml-auto transition-transform duration-300 hover:scale-110">
+                      <FontAwesomeIcon
+                        icon={faTrashCan}
+                        className="w-5 h-5 ml-2 transition-transform duration-300"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteFile(file._id);
+                        }}
+                      />
+                    </button>
+                  </div>
                 ))
               ) : (
                 <div className="flex justify-center items-center w-full h-40 col-span-full">
