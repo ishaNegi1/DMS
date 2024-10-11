@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button0, Vector0, Vector1, Button } from "../components/allComponents";
+import { Button0, Button } from "../components/allComponents";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFileArrowUp,
   faFolderPlus,
-  faTrashCan,
+  faTrash,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { notFound } from "../assets/pictures";
@@ -200,7 +200,7 @@ const User = () => {
     <>
       <div className=" bg-gradient-nav-foot text-black sm:h-24 h-20 flex">
         <div className="flex items-center sm:ml-14 ml-4">
-          <div className=" sm:w-12 sm:h-12 w-7 h-7 bg-white rounded-full flex justify-center items-center">
+          <div className=" sm:w-12 sm:h-12 w-9 h-9 bg-white rounded-full flex justify-center items-center">
             <FontAwesomeIcon icon={faUser} className=" w-5 h-6" />
           </div>
           <p className="font-Nunito px-2 font-semibold text-xl sm:text-2xl">
@@ -222,7 +222,6 @@ const User = () => {
           </button>
         </div>
       </div>
-      <Vector0 />
       <div className=" flex sm:flex-row flex-col">
         <input
           type="text"
@@ -343,7 +342,7 @@ const User = () => {
         </div>
       )}
 
-      <div className="folders-container mt-5 sm:ml-12 mx-2">
+      <div className="folders-container sm:ml-12 mx-2 my-4">
         {!selectedFolder ? (
           <>
             <p className=" font-Telex font-medium text-2xl mb-3">Folders</p>
@@ -351,11 +350,11 @@ const User = () => {
               {folders?.length > 0 ? (
                 folders?.map((data, index) => (
                   <div
-                    className="relative rounded-lg w-auto h-auto sm:mx-4 px-2 mt-5 shadow-lg shadow-gray flex justify-between sub py-2 bg-white bg-opacity-75 "
+                    className="relative rounded-lg w-auto h-auto sm:mx-4 px-2 mt-2 shadow-lg shadow-gray flex justify-between sub py-2 bg-white bg-opacity-75 "
                     key={data.folder._id || index}
                     onClick={() => handleFolderClick(data.folder)}
                   >
-                    <p className=" text-xl font-Nunito font-semibold fileName break-words overflow-hidden">
+                    <p className=" sm:text-xl text-sm font-Nunito font-normal fileName break-words overflow-hidden">
                       {data.folder.name}
                     </p>
                     <button
@@ -363,9 +362,8 @@ const User = () => {
                     "
                     >
                       <FontAwesomeIcon
-                        icon={faTrashCan}
-                        style={{ color: "#353536" }}
-                        className="w-5 h-5 ml-2 transition-transform duration-300"
+                        icon={faTrash}
+                        className="sm:w-5 sm:h-5 w-4 h-4 ml-2 transition-transform duration-300"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleDeleteFolder(data.folder._id);
@@ -387,28 +385,29 @@ const User = () => {
           <div className="files-container">
             <button
               onClick={handleBackToFolders}
-              className="bg-purple text-white px-2 py-1 sm:px-3 sm:py-1 h-8 rounded-md text-xs sm:text-xl transition-all duration-500 ease-linear transform hover:scale-110 sm:mx-2 mr-4 sm:h-10 flex justify-center items-center"
+              className="bg-main text-white px-2 py-1 sm:px-3 sm:py-1 h-8 rounded-md text-sm sm:text-xl transition-all duration-500 ease-linear transform hover:scale-110 sm:mx-2 mr-4 sm:h-10 flex justify-center items-center my-5"
             >
               Back to Folders
             </button>
             <p className="font-Telex font-medium text-2xl mb-3 mt-3 break-words overflow-hidden">
               Folders/{selectedFolder.name}
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {files?.length > 0 ? (
                 files?.map((file, index) => (
                   <div
-                    className="relative rounded-lg w-auto h-auto sm:mx-4 mx-1 mt-5 shadow-lg shadow-gray transition-shadow duration-300 flex items-center justify-between sub px-4 py-2 bg-white bg-opacity-75"
+                    className="relative rounded-lg w-auto h-auto sm:mx-4 mx-1 mt-4 shadow-lg shadow-gray transition-shadow duration-300 flex items-center justify-between sub px-4 py-2 bg-white bg-opacity-75"
                     key={file?._id || index}
                     onClick={() => handlestream(file?._id)}
                   >
-                    <p className="text-center text-xl font-Nunito font-semibold fileName break-words overflow-hidden">
+                    <p className="text-center sm:text-xl text-sm font-Nunito font-normal fileName break-words overflow-hidden">
                       {file?.originalName}
                     </p>
                     <button className="cursor-pointer ml-auto transition-transform duration-300 hover:scale-110">
                       <FontAwesomeIcon
-                        icon={faTrashCan}
-                        className="w-5 h-5 ml-2 transition-transform duration-300"
+                        icon={faTrash}
+                        className="sm:w-5 sm:h-5 w-4 h-4 ml-2 transition-transform duration-300"
+                        
                         onClick={(e) => {
                           e.stopPropagation();
                           handleDeleteFile(file._id);
@@ -428,7 +427,6 @@ const User = () => {
           </div>
         )}
       </div>
-      <Vector1 />
     </>
   );
 };
