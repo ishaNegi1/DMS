@@ -132,8 +132,8 @@ const User = () => {
       if (uploadedFile) {
         setFiles((prevFiles) => [...prevFiles, uploadedFile?.file]);
         setfolders((prevFolders) =>
-          prevFolders.map((f) =>
-            f.folder._id === selectedFolder._id
+          prevFolders?.map((f) =>
+            f.folder._id === selectedFolder?._id
               ? { ...f, files: [...f?.files, uploadedFile?.file] }
               : f
           )
