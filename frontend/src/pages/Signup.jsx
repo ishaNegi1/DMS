@@ -88,7 +88,7 @@ const Signup = () => {
             value={fullname}
             onChange={(e) => setFullname(e.target.value)}
             required
-            className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
+            className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 px-2 w-11/12 rounded-md"
           />
 
           <label htmlFor="email" className="mb-2 text-xl">
@@ -100,7 +100,7 @@ const Signup = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
+            className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 px-2 w-11/12 rounded-md"
           />
 
           <label htmlFor="password" className="mb-2 text-xl">
@@ -112,7 +112,7 @@ const Signup = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
+            className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 px-2 w-11/12 rounded-md"
           />
           <p className=" text-red text-lg">{error}</p>
           <button

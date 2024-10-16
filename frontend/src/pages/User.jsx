@@ -194,7 +194,7 @@ const User = () => {
       <p className=" font-Telex text-xl text-center px-1">
         Oops! It looks like you're not logged in.
       </p>
-      <Button text="Go to Home" to="/" rest="mt-4" />
+      <Button text="Go to Home" to="/" rest="mt-4 px-3" />
     </div>
   ) : (
     <>
@@ -226,7 +226,7 @@ const User = () => {
         <input
           type="text"
           placeholder="Search anything..."
-          className=" sm:w-1/2 w-11/12 h-12 rounded-3xl mt-3 sm:ml-12 mx-2 px-4 border-2 border-main outline-4 outline-main text-xl"
+          className=" sm:w-1/2 w-11/12 sm:h-12 h-10 rounded-3xl mt-3 sm:ml-12 mx-2 px-4 border-2 border-main outline-4 outline-main text-xl"
           onKeyUp={handleSearch}
         />
         <div className=" flex ml-auto mt-3 sm:mr-24">

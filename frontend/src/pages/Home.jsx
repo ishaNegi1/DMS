@@ -1,18 +1,15 @@
 import {
   logo,
-  vector1,
   pic1,
   pic2,
   pic3,
   pic4,
-  circle,
 } from "../assets/pictures";
 import {
   Button,
   Footer,
   Vector0,
   Vector1,
-  Loader,
 } from "../components/allComponents";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -113,7 +110,7 @@ function Home() {
         <div className=" text-center">
           <Button
             text="Get Started"
-            rest="sm:mr-10 mr-2 mt-3 sm:h-10"
+            rest="sm:mr-10 mr-2 px-3 mt-3 sm:h-10"
             to="Signup"
           />
         </div>

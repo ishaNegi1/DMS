@@ -70,7 +70,7 @@ const Login = () => {
         </div>
       </div>
       <div className=" w-full sm:w-1/2 h-screen fixed right-0 top-0 sm:rounded-s-3xl rounded-none sm:border-l-2 border-l-0 border-main sm:bg-white">
-        <p className=" font-Telex text-3xl sm:text-5xl font-medium mt-20 ml-10">
+        <p className=" font-Telex text-3xl sm:text-5xl font-medium sm:mt-20 mt-28 ml-10">
           Welcome Back
         </p>
         <form
@@ -86,7 +86,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
+            className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 px-2 w-11/12 rounded-md"
           />
 
           <label htmlFor="password" className="mb-2 text-xl">
@@ -98,7 +98,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 w-11/12"
+            className="border-0 border-b-2 border-input-line outline-none bg-transparent mb-4 py-1 px-2 w-11/12 rounded-md"
           />
           <p className=" text-red text-lg">{error}</p>
           <button
